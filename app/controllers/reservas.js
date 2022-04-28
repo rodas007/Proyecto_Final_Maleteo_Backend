@@ -1,4 +1,4 @@
-const model = require('../models/city')
+const model = require('../models/reserva')
 const { matchedData } = require('express-validator')
 const utils = require('../middleware/utils')
 const db = require('../middleware/db')
@@ -10,13 +10,13 @@ const db = require('../middleware/db')
 /**
  * Checks if a city already exists excluding itself
  * @param {string} id - id of item
- * @param {string} name - name of item
+ * @param {string} useremail - useremail of item
  */
-const cityExistsExcludingItself = async (id, name) => {
+const cityExistsExcludingItself = async (id, useremail) => {
   return new Promise((resolve, reject) => {
     model.findOne(
       {
-        name,
+        useremail,
         _id: {
           $ne: id
         }
@@ -31,13 +31,13 @@ const cityExistsExcludingItself = async (id, name) => {
 
 /**
  * Checks if a city already exists in database
- * @param {string} name - name of item
+ * @param {string} useremail - useremail of item
  */
-const cityExists = async (name) => {
+const cityExists = async (useremail) => {
   return new Promise((resolve, reject) => {
     model.findOne(
       {
-        name
+        useremail
       },
       (err, item) => {
         utils.itemAlreadyExists(err, item, reject, 'CITY_ALREADY_EXISTS')
@@ -57,7 +57,7 @@ const getAllItemsFromDB = async () => {
       '-updatedAt -createdAt',
       {
         sort: {
-          name: 1
+          useremail: 1
         }
       },
       (err, items) => {
@@ -125,7 +125,7 @@ exports.updateItem = async (req, res) => {
   try {
     req = matchedData(req)
     const id = await utils.isIDGood(req.id)
-    const doesCityExists = await cityExistsExcludingItself(id, req.name)
+    const doesCityExists = await cityExistsExcludingItself(id, req.useremail)
     if (!doesCityExists) {
       res.status(200).json(await db.updateItem(id, model, req))
     }
@@ -142,7 +142,7 @@ exports.updateItem = async (req, res) => {
 exports.createItem = async (req, res) => {
   try {
     req = matchedData(req)
-    const doesCityExists = await cityExists(req.name)
+    const doesCityExists = await cityExists(req.useremail)
     if (!doesCityExists) {
       res.status(201).json(await db.createItem(req, model))
     }

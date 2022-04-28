@@ -1,5 +1,5 @@
-const controller = require('../controllers/cities')
-const validate = require('../controllers/cities.validate')
+const controller = require('../controllers/espacios')
+const validate = require('../controllers/espacios.validate')
 const AuthController = require('../controllers/auth')
 const express = require('express')
 const router = express.Router()
@@ -11,19 +11,19 @@ const requireAuth = passport.authenticate('jwt', {
 const trimRequest = require('trim-request')
 
 /*
- * Cities routes
+ * Novedades routes
  */
 
 /*
  * Get all items route
  */
-router.get('/all', controller.getAllItems)
+router.get('/', controller.getAllItems)
 
 /*
  * Get items route
  */
 router.get(
-  '/',
+  '/all',
   requireAuth,
   AuthController.roleAuthorization(['admin']),
   trimRequest.all,
@@ -35,8 +35,7 @@ router.get(
  */
 router.post(
   '/',
-  requireAuth,
-  AuthController.roleAuthorization(['admin']),
+
   trimRequest.all,
   validate.createItem,
   controller.createItem

@@ -3,9 +3,17 @@ const mongoosePaginate = require('mongoose-paginate-v2')
 
 const CitySchema = new mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true
+    },
+    image: {
+      type: String,
+      required: false
+    },
+    text: {
+      type: String,
+      required: false
     }
   },
   {
@@ -14,4 +22,4 @@ const CitySchema = new mongoose.Schema(
   }
 )
 CitySchema.plugin(mongoosePaginate)
-module.exports = mongoose.model('City', CitySchema)
+module.exports = mongoose.model('experiencia', CitySchema)
