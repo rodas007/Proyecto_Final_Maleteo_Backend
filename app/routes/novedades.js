@@ -17,7 +17,7 @@ const trimRequest = require('trim-request')
 /*
  * Get all items route
  */
-router.get('/', controller.getAllItems)
+router.get('/', controller.getAllItems, trimRequest.all, controller.getItems)
 
 /*
  * Get items route

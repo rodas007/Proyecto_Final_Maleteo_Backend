@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
-const CitySchema = new mongoose.Schema(
+const NovedadSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -21,5 +21,5 @@ const CitySchema = new mongoose.Schema(
     timestamps: true
   }
 )
-CitySchema.plugin(mongoosePaginate)
-module.exports = mongoose.model('novedades', CitySchema)
+NovedadSchema.plugin(mongoosePaginate)
+module.exports = mongoose.model('novedades', NovedadSchema)

@@ -17,15 +17,14 @@ const trimRequest = require('trim-request')
 /*
  * Get all items route
  */
-router.get('/', controller.getAllItems)
+router.get('/all', controller.getAllItems)
 
 /*
  * Get items route
  */
 router.get(
-  '/all',
-  requireAuth,
-  AuthController.roleAuthorization(['admin']),
+  '/',
+
   trimRequest.all,
   controller.getItems
 )
