@@ -10,13 +10,15 @@ const db = require('../middleware/db')
 /**
  * Checks if a city already exists excluding itself
  * @param {string} id - id of item
- * @param {string} email - name of item
+ * @param {string} title - name of item
+
  */
-const cityExistsExcludingItself = async (id, email) => {
+const cityExistsExcludingItself = async (id, title) => {
   return new Promise((resolve, reject) => {
     model.findOne(
       {
-        email,
+        title,
+
         _id: {
           $ne: id
         }
@@ -142,7 +144,8 @@ exports.updateItem = async (req, res) => {
 exports.createItem = async (req, res) => {
   try {
     req = matchedData(req)
-    const doesCityExists = await cityExists(req.email)
+    const doesCityExists = await cityExists(req.title)
+
     if (!doesCityExists) {
       res.status(201).json(await db.createItem(req, model))
     }

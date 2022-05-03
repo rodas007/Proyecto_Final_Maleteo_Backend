@@ -96,9 +96,7 @@ exports.createItem = [
     .isEmpty()
     .withMessage('IS_EMPTY')
     .trim(),
-  (req, res, next) => {
-    validationResult(req, res, next)
-  }
+ 
 ]
 
 /**

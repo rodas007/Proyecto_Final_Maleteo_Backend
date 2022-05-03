@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
-const CitySchema = new mongoose.Schema(
+const EspacioSchema = new mongoose.Schema(
   {
     imagen: {
       type: String,
-      required: true
+      required: false
     },
     email: {
       type: String,
@@ -61,5 +61,5 @@ const CitySchema = new mongoose.Schema(
     timestamps: true
   }
 )
-CitySchema.plugin(mongoosePaginate)
-module.exports = mongoose.model('espacio', CitySchema)
+EspacioSchema.plugin(mongoosePaginate)
+module.exports = mongoose.model('espacio', EspacioSchema)
