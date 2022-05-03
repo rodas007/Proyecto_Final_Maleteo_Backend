@@ -55,7 +55,7 @@ router.get(
 router.patch(
   '/:id',
   requireAuth,
-  AuthController.roleAuthorization(['admin']),
+  AuthController.roleAuthorization(['user']),
   trimRequest.all,
   validate.updateItem,
   controller.updateItem

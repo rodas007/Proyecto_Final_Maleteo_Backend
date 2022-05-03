@@ -95,8 +95,7 @@ exports.createItem = [
     .not()
     .isEmpty()
     .withMessage('IS_EMPTY')
-    .trim(),
- 
+    .trim()
 ]
 
 /**

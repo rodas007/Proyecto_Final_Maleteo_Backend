@@ -129,9 +129,7 @@ exports.updateItem = [
     .not()
     .isEmpty()
     .withMessage('IS_EMPTY'),
-  (req, res, next) => {
-    validationResult(req, res, next)
-  }
+
 ]
 
 /**

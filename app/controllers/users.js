@@ -88,7 +88,7 @@ exports.updateItem = async (req, res) => {
     const id = await utils.isIDGood(req.id)
     const doesEmailExists = await emailer.emailExistsExcludingMyself(
       id,
-      req.email
+      req.id
     )
     if (!doesEmailExists) {
       res.status(200).json(await db.updateItem(id, model, req))
